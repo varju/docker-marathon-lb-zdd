@@ -1,0 +1,26 @@
+diff --git a/utils.py b/utils.py
+index 4f56e0b..caa7a19 100644
+--- a/utils.py
++++ b/utils.py
+@@ -4,6 +4,7 @@ import hashlib
+ import struct
+ import logging
+ import socket
++import re
+ 
+ from lrucache import *
+ 
+@@ -132,6 +133,13 @@ def resolve_ip(host):
+     if cached_ip:
+         return cached_ip
+     else:
++        match = re.search('^ip-(\d+-\d+-\d+-\d+).ec2.internal$', host)
++        if (match):
++            logger.debug("assuming ec2 IP for host %s", host)
++            ip = match.group(1).replace('-', '.')
++            ip_cache.set(host, ip)
++            return ip
++
+         try:
+             logger.debug("trying to resolve ip address for host %s", host)
+             ip = socket.gethostbyname(host)
