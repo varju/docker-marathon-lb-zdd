@@ -2,7 +2,7 @@ FROM python:3.5-alpine
 
 RUN apk add --no-cache git
 
-ENV MARATHON_VERSION v1.3.0
+ENV MARATHON_VERSION v1.3.1
 
 COPY resolve-ec2-ips.patch /tmp
 RUN cd /usr/src \
