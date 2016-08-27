@@ -1,8 +1,13 @@
 FROM python:3.5-alpine
 
-RUN apk add --no-cache git
+RUN apk add --no-cache \
+  build-base \
+  git \
+  libffi-dev \
+  openssl-dev \
+  python-dev
 
-ENV MARATHON_VERSION v1.3.1
+ENV MARATHON_VERSION v1.3.3
 
 COPY resolve-ec2-ips.patch /tmp
 RUN cd /usr/src \

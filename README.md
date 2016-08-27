@@ -12,7 +12,7 @@ Usage
 From the directory containing your JSON service definition:
 
 ```
-docker run --rm -ti --volume `pwd`:/data varju/marathon-lb-zdd \
+docker run --rm -ti --volume `pwd`:/data varju/marathon-lb-zdd:1.3.3-1 \
   --syslog-socket /dev/null \
   --force \
   --marathon http://my.marathon.master:8080 \
